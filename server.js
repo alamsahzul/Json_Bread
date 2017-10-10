@@ -21,11 +21,12 @@ app.use(function(req, res, next) {
 
 
 app.get('/', function(req, res) {
-  fs.readFile(DATA_PATH, function(err, data) {
+  fs.readFile(DATA_PATH, "utf8", function(err, data) {
     if(err)
     {
       console.error(err);
     }
+    console.log(data);
     res.render('home', {title: "HOME", data: JSON.parse(data)});
   });
 });
