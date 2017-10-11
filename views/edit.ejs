@@ -1,4 +1,4 @@
-<!-- <% include partials/headertop %> -->
+<% include partials/headertop %>
 <% include partials/header %>
 <% include partials/menu %>
 
@@ -34,10 +34,9 @@
         <tr>
           <td>Boolean</td>
           <td><select name="boolean">
-                        <option value="<%= item.boolean %>">True</option>
-                        <option value="True">True</option>
-                        <option value="False">False</option>
-                </select>
+                  <option value="true" <%= (item.status == "true") ? " selected":"" %>>True</option>
+                  <option value="false" <%= (item.status == "false") ? " selected":"" %>>False</option>
+              </select>
           </td>
         </tr>
 
