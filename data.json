@@ -1,0 +1,34 @@
+[
+   {
+      "id": 1503559759183,
+      "string": "Firman",
+      "integer": "33",
+      "float": "165.22",
+      "date": "2017-08-01",
+      "boolean": "false"
+   },
+   {
+      "id": 1507696788710,
+      "string": "Mikha",
+      "integer": "25",
+      "float": "161.5",
+      "date": "2017-10-27",
+      "boolean": "True"
+   },
+   {
+      "id": 1507696931008,
+      "string": "William",
+      "integer": "25",
+      "float": "161.5",
+      "date": "2017-10-28",
+      "boolean": "False"
+   },
+   {
+      "id": 1507702586971,
+      "string": "Mikha",
+      "integer": "25",
+      "float": "161.5",
+      "date": "2017-10-31",
+      "boolean": "false"
+   }
+]
