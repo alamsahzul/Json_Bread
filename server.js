@@ -3,6 +3,7 @@ const app         = express();
 const path        = require('path')
 const fs          = require('fs');
 const bodyParser  = require('body-parser');
+const cors        = require('cors');
 const DATA_PATH   = path.join(__dirname, 'data.json');
 
 app.set('views', path.join(__dirname, 'views'));
@@ -12,15 +13,9 @@ app.use(express.static(path.join(__dirname,'asset')))
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(cors());
 
-app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Cache-Control', 'no-cache');
-    next();
-});
-
-
-app.get('/', function(req, res) {
+app.get('/', function(req, res, next) {
   fs.readFile(DATA_PATH, "utf8", function(err, data) {
     if(err)
     {
@@ -31,13 +26,12 @@ app.get('/', function(req, res) {
   });
 });
 
-app.get('/add', function(req,res) {
-  res.render('add');
+app.get('/add', function(req,res, next) {
+  res.render('add', {title: "EDIT"});
 });
 
-
 //untuk menambahkan data ke json
-app.post('/add', function(req,res) {
+app.post('/add', function(req, res, next) {
   var id          = Date.now()
   var string      = req.body.string;
   var integer     = req.body.integer;
@@ -83,7 +77,7 @@ app.post('/add', function(req,res) {
 });
 
 // ################### KE FORM EDIT #########################
-app.get('/edit/:id', function(req,res)
+app.get('/edit/:id', function(req, res, next)
 {
   fs.readFile(DATA_PATH, function(err, data)
   {
@@ -109,7 +103,7 @@ app.get('/edit/:id', function(req,res)
 
 
 //######################### SIMPAN HASIL EDIT ##################################
-app.post('/edit/:id', function(req,res) {
+app.post('/edit/:id', function(req, res, next) {
   var   id      = Number(req.params.id)
   var   string  = req.body.string;
   var   integer = req.body.integer;
@@ -172,9 +166,10 @@ app.get('/delete/:id', function(req,res){
       if (err) {
         console.error(err);
         res.send(err);
+      }else {
+        res.redirect('/');
       }
-    res.redirect('/');
-  });
+    });
   });
 });
 
